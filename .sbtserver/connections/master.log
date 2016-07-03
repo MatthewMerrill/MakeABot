@@ -1,0 +1,49 @@
+New log file opened at Sun Jul 03 22:41:55 UTC 2016 by 15346@larch
+Taking next connection to: 39569
+New client attempting to connect on port: 48854-39569
+  Address = /127.0.0.1:39569
+This client on port 48854 has uuid 9fb1569c-c352-49a7-870e-93d00d22ac99 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-9fb1569c-c352-49a7-870e-93d00d22ac99
+Taking next connection to: 39569
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 39569
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 39569
+New client attempting to connect on port: 49212-39569
+  Address = /127.0.0.1:39569
+Handshake exception on socket: 49212
+sbt.impl.ipc.HandshakeException: Unable to perform handshake
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:46)
+	at sbt.impl.ipc.MultiClientServer.<init>(IPC.scala:150)
+	at sbt.server.SbtServerSocketHandler$$anon$1.run(SbtServerSocketHandler.scala:43)
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at sbt.impl.ipc.Peer.receive(IPC.scala:95)
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:49)
+	... 2 more
+Taking next connection to: 39569
+New client attempting to connect on port: 49214-39569
+  Address = /127.0.0.1:39569
+This client on port 49214 has uuid 3c3ea523-da8c-44ea-ab51-788f54ba10f1 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: activator-9fb1569c-c352-49a7-870e-93d00d22ac99, play-fork-run-3c3ea523-da8c-44ea-ab51-788f54ba10f1
+Taking next connection to: 39569
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 39569
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 39569
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 39569
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 39569
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 39569
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 39569
