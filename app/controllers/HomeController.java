@@ -1,8 +1,12 @@
 package controllers;
 
+import models.ForumPost;
+import models.ForumSection;
 import play.mvc.*;
 
 import views.html.*;
+
+import java.util.Arrays;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -18,6 +22,21 @@ public class HomeController extends Controller {
      */
     public Result index() {
         return ok(index.render("Your new application is ready."));
+    }
+
+    public Result forum() {
+
+        ForumSection section = new ForumSection();
+
+        section.name = "Example Parent";
+        section.childSections = Arrays.asList(
+                new ForumSection(){{ this.name = "Child Section 1"; }}
+        );
+        section.childPosts = Arrays.asList(
+                new ForumPost(){{ this.name = "Child Post 1"; }}
+        );
+
+        return ok(views.html.forum.render(section));
     }
 
 }

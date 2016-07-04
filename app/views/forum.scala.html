@@ -1,0 +1,27 @@
+@import models._
+
+@(section : ForumSection)
+
+@main("Forum") {
+
+    @if(section != null) {
+        <h1>@section.name</h1>
+
+        <ul>
+            @for(subsection : ForumSection <- section.childSections) {
+                <li>@subsection.name</li>
+            }
+        </ul>
+        <ul>
+            @for(subpost : ForumPost <- section.childPosts) {
+                <li>@subpost.name</li>
+            }
+        </ul>
+    } else {
+        <ul>
+            @for(section : ForumSection <- ForumSection.finder.findList()) {
+                <li>@section.name</li>
+            }
+        </ul>
+    }
+}

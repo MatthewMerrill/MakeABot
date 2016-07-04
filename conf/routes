@@ -9,5 +9,13 @@ GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
 GET     /message                    controllers.AsyncController.message
 
+GET     /hello                      controllers.RestController.getHello
+GET     /forum                      controllers.HomeController.forum
+
+
+# REST ROUTES
+GET     /REST/getComments           controllers.RestController.getComments
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
