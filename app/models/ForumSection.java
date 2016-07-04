@@ -1,13 +1,18 @@
 package models;
 
 import com.avaje.ebean.Model;
-import com.google.inject.Singleton;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.List;
 
+@Entity
 public class ForumSection extends Model {
 
     public static Model.Finder<Long, ForumSection> finder = new Model.Finder<>(ForumSection.class);
@@ -18,12 +23,14 @@ public class ForumSection extends Model {
     public String name;
 
     @ManyToOne
-    public ForumSection parent;
+    public ForumSection parentSection;
 
-    @OneToMany
+    @OneToMany(mappedBy = "parentSection")
+    @JsonIgnore
     public List<ForumSection> childSections;
 
-    @OneToMany
+    @OneToMany(mappedBy = "parentSection")
+    @JsonIgnore
     public List<ForumPost> childPosts;
 
 }

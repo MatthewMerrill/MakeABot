@@ -1,0 +1,31 @@
+@(bothook : BotHook)
+
+@main("Playground") {
+    <div class="center_container">
+
+        @if(bothook == null) {
+            <div class="center_item center_impact">
+                <h1>Please select a Bot.</h1>
+            </div>
+
+            @for(bot : BotHook <- BotHook.finder.findList()) {
+                <div class="center_item center_shaded">
+                    <h3><a href="@routes.HomeController.bot(bot.id)">@bot.name</a></h3>
+                </div>
+            }
+        } else {
+
+            <div class="center_item center_shaded">
+                <h1>@bothook.name</h1>
+
+                <input id="bot-input" type="text">
+                <button id="bot-submit">Submit</button>
+
+            </div>
+
+
+
+        }
+
+    </div>
+}

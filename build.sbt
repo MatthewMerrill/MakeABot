@@ -20,4 +20,4 @@ playEbeanModels in Compile := Seq("models.*")
 playEbeanDebugLevel := 4
 playEbeanModels in Test := Seq("models.*")
 
-fork in run := true
+fork in run := false

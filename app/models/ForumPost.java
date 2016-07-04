@@ -1,15 +1,15 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-/**
- * Created by merrillm on 7/3/16.
- */
+@Entity
 public class ForumPost extends Model {
 
     public static Model.Finder<Long, ForumPost> finder = new Model.Finder<>(ForumPost.class);
@@ -20,9 +20,13 @@ public class ForumPost extends Model {
     public String name;
 
     @ManyToOne
-    public ForumSection parent;
+    public User user;
 
-    @OneToMany
+    @ManyToOne
+    public ForumSection parentSection;
+
+    @OneToMany(mappedBy = "parentPost")
+    @JsonIgnore
     public List<ForumComment> comments;
 
 }

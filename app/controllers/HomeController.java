@@ -1,5 +1,6 @@
 package controllers;
 
+import models.BotHook;
 import models.ForumPost;
 import models.ForumSection;
 import play.mvc.*;
@@ -7,6 +8,7 @@ import play.mvc.*;
 import views.html.*;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -24,17 +26,47 @@ public class HomeController extends Controller {
         return ok(index.render("Your new application is ready."));
     }
 
+    /*
+    PLAYGROUND ROUTES
+     */
+    public Result playground() {
+        return ok(playground.render(null));
+    }
+    public Result bot(Long id) {
+        if (id == null)
+            return redirect(routes.HomeController.playground());
+
+        BotHook botHook = BotHook.finder.byId(id);
+
+        if (botHook == null)
+            return badRequest();
+
+        return ok(playground.render(botHook));
+    }
+
+
+    /*
+    FORUM ROUTES
+     */
     public Result forum() {
+        ForumSection topLevel = new ForumSection();
+        topLevel.name = "Forum";
+        topLevel.childSections = ForumSection.finder.where()
+                .eq("parent_section_id", null)
+                .findList();
+        topLevel.childPosts = Collections.emptyList();
 
-        ForumSection section = new ForumSection();
+        return ok(forum.render(topLevel));
+    }
 
-        section.name = "Example Parent";
-        section.childSections = Arrays.asList(
-                new ForumSection(){{ this.name = "Child Section 1"; }}
-        );
-        section.childPosts = Arrays.asList(
-                new ForumPost(){{ this.name = "Child Post 1"; }}
-        );
+    public Result forumSection(Long id) {
+        if (id == null)
+            return redirect(routes.HomeController.forum());
+
+        ForumSection section = ForumSection.finder.byId(id);
+
+        if (section == null)
+            return badRequest();
 
         return ok(views.html.forum.render(section));
     }

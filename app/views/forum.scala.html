@@ -5,18 +5,23 @@
 @main("Forum") {
 
     @if(section != null) {
-        <h1>@section.name</h1>
 
-        <ul>
+        <div class="center_container">
+            <h1 class="center_item center_shaded">@section.name</h1>
+
             @for(subsection : ForumSection <- section.childSections) {
-                <li>@subsection.name</li>
+                <div class="center_item center_shaded">
+                    <a href="/forum-section/@subsection.id">
+                        @subsection.name</a>
+                </div>
             }
-        </ul>
-        <ul>
+
+            <ul>
             @for(subpost : ForumPost <- section.childPosts) {
                 <li>@subpost.name</li>
             }
-        </ul>
+            </ul>
+        </div>
     } else {
         <ul>
             @for(section : ForumSection <- ForumSection.finder.findList()) {
