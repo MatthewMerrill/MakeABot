@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import play.db.NamedDatabase;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ public class BotHook extends Model {
     public Long id;
 
     public String name;
+    public String description;
 
     public String maker = "Bobby Tables";
 

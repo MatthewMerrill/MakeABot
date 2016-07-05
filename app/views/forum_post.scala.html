@@ -1,0 +1,26 @@
+@import models._
+
+@(post : ForumPost)
+
+@main("Forum") {
+
+    <div class="center_container">
+    @if(post != null) {
+
+            <h1 class="center_item center_shaded">@post.name</h1>
+
+            @for(comment : ForumComment <- post.comments) {
+                <div class="center_item center_shaded">
+                    @forum_comment(comment)
+                </div>
+            }
+
+            <div class="center_item center_shaded">
+            @forum_comment_form(post)
+            </div>
+
+    } else {
+        <h1 class="center_item center_impact">Could not find post!</h1>
+    }
+    </div>
+}

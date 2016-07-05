@@ -22,6 +22,8 @@ public class ForumSection extends Model {
 
     public String name;
 
+    public boolean preventPosts = false;
+
     @ManyToOne
     public ForumSection parentSection;
 

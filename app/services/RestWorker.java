@@ -7,6 +7,8 @@ import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Http;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 @Singleton
@@ -18,10 +20,19 @@ public class RestWorker {
     public <T extends Model> boolean addModel(Http.Request request, Class<T> clazz) {
         Map<String, String[]> data = request.body().asFormUrlEncoded();
 
-        Form<T> form = formFactory.form(clazz);
-        form.bindFromRequest(data);
+        data.entrySet().stream().forEach((e) -> System.out.println(e.getKey() + " -> " + Arrays.toString(e.getValue())));
+
+        Form<T> form = formFactory
+                .form(clazz)
+                .bindFromRequest(data);
 
         if (form.hasErrors()) {
+            System.out.println(form.errors());
+            return false;
+        }
+
+        if (form.hasGlobalErrors()) {
+            System.out.println(form.globalErrors());
             return false;
         }
 
@@ -30,6 +41,7 @@ public class RestWorker {
             model.insert();
             return true;
         } catch (Exception ignored) {
+            ignored.printStackTrace();
             return false;
         }
     }

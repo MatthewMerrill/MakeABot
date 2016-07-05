@@ -9,15 +9,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
+// TODO: Replies like 4chan
 public class ForumComment extends Model {
 
     public static Model.Finder<Long, ForumComment> finder = new Model.Finder<>(ForumComment.class);
 
     @Id
     public Long id;
-
-    @ManyToOne
-    public ForumSection parentSection;
 
     @ManyToOne
     public ForumPost parentPost;

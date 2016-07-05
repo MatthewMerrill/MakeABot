@@ -1,0 +1,6 @@
+@import models._
+
+@(comment : ForumComment)
+
+<h6>@if(comment.user!=null){ @comment.user.username }else{ Anonymous }</h6>
+@comment.messageBody

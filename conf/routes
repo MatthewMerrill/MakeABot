@@ -2,13 +2,16 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+GET     /                           controllers.HomeController.index
+
 GET     /playground                 controllers.HomeController.playground
 GET     /bot/:id                    controllers.HomeController.bot(id: Long)
 
-POST    /rest/bot/sendMessage       controllers.BotController.sendBotMessage
+POST    /REST/bot/sendMessage       controllers.BotController.sendBotMessage
 
 GET     /forum                      controllers.HomeController.forum
-GET     /forum-section/:id          controllers.HomeController.forumSection(id: Long)
+GET     /forum/section/:id          controllers.HomeController.forumSection(id: Long)
+GET     /forum/post/:id             controllers.HomeController.forumPost(id: Long)
 
 # REST ROUTES
 GET     /REST/getComments           controllers.RestController.getComments

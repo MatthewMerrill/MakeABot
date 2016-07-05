@@ -9,18 +9,30 @@
         <div class="center_container">
             <h1 class="center_item center_shaded">@section.name</h1>
 
-            @for(subsection : ForumSection <- section.childSections) {
+            @if(section.childSections != null && !section.childSections.isEmpty){
+
                 <div class="center_item center_shaded">
-                    <a href="/forum-section/@subsection.id">
-                        @subsection.name</a>
+                    <h3>Child Sections:</h3>
+                @for(subsection : ForumSection <- section.childSections) {
+                        <a href="/forum/section/@subsection.id">
+                            @subsection.name</a>
+                }
                 </div>
+
             }
 
-            <ul>
-            @for(subpost : ForumPost <- section.childPosts) {
-                <li>@subpost.name</li>
+            @if(!section.preventPosts) {
+                <div class="center_item center_shaded">
+                    <h3>Posts:</h3>
+                    <ul>
+                    @for(subpost: ForumPost <- section.childPosts) {
+                        <li><a href="/forum/post/@subpost.id">
+                        @subpost.name</a>
+                        </li>
+                    }
+                    </ul>
+                </div>
             }
-            </ul>
         </div>
     } else {
         <ul>

@@ -3,11 +3,12 @@ package controllers;
 import models.BotHook;
 import models.ForumPost;
 import models.ForumSection;
-import play.mvc.*;
+import play.mvc.Controller;
+import play.mvc.Result;
+import views.html.forum;
+import views.html.index;
+import views.html.playground;
 
-import views.html.*;
-
-import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -51,6 +52,7 @@ public class HomeController extends Controller {
     public Result forum() {
         ForumSection topLevel = new ForumSection();
         topLevel.name = "Forum";
+        topLevel.preventPosts = true;
         topLevel.childSections = ForumSection.finder.where()
                 .eq("parent_section_id", null)
                 .findList();
@@ -69,6 +71,18 @@ public class HomeController extends Controller {
             return badRequest();
 
         return ok(views.html.forum.render(section));
+    }
+
+    public Result forumPost(Long id) {
+        if (id == null)
+            return redirect(routes.HomeController.forum());
+
+        ForumPost post = ForumPost.finder.byId(id);
+
+        if (post == null)
+            return badRequest();
+
+        return ok(views.html.forum_post.render(post));
     }
 
 }

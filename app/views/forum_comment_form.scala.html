@@ -1,0 +1,8 @@
+@(post : ForumPost)
+
+<form method="post" action="/REST/addComment">
+    <textarea name="messageBody"></textarea>
+    <input type="submit">
+
+    <input name="parentPost.id" type="hidden" value="@post.id">
+</form>

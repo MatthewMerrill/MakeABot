@@ -10,13 +10,18 @@
 
             @for(bot : BotHook <- BotHook.finder.findList()) {
                 <div class="center_item center_shaded">
-                    <h3><a href="@routes.HomeController.bot(bot.id)">@bot.name</a></h3>
+                    <h3><a href="@routes.HomeController.bot(bot.id)">@xml.Utility.escape(bot.name)</a></h3>
+                    <p>@xml.Utility.escape(bot.description)</p>
                 </div>
             }
         } else {
 
             <div class="center_item center_shaded">
                 <h1>@bothook.name</h1>
+
+                <div id="bot-messages-scroll">
+                    <div id="bot-messages"></div>
+                </div>
 
                 <input id="bot-input" type="text">
                 <button id="bot-submit">Submit</button>

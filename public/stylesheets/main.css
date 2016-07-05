@@ -7,13 +7,34 @@ a {
 	color: initial;
 }
 
+li {
+	margin-left: 30px;
+}
+
 .headbar {
 	width: 100%;
+	height: 45px;
+	overflow: auto;
 	background-color: #e1d7ff;
 }
 
 .headbar h1 {
-	text-align: center;
+	float: left;
+	line-height: 45px;
+	text-align: left;
+	margin-left: 15px;
+}
+
+.headbar nav {
+	position: absolute;
+	right: 0;
+	margin-left: auto;
+}
+
+.headbar nav a {
+	display: inline-block;
+	line-height: 45px;
+	margin-right: 15px;
 }
 
 .center_container {
@@ -26,6 +47,8 @@ a {
 
 	min-height: 60px;
 	margin: 15px auto;
+
+	padding: 10px;
 }
 
 .center_shaded {
@@ -35,5 +58,17 @@ a {
 
 .center_impact {
 	border: solid 1px maroon;
+	box-shadow: 0px 0px 5px indianred;
 	background-color: aliceblue;
+}
+
+#bot-messages-scroll {
+	height: 200px;
+	overflow-y: scroll;
+	background-color: #f0f0f0;
+}
+
+#bot-messages {
+	postition: absolute;
+	bottom: 0;
 }

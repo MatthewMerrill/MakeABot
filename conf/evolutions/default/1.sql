@@ -6,6 +6,7 @@
 create table bot_hook (
   id                            bigint auto_increment not null,
   name                          varchar(255),
+  description                   varchar(255),
   maker                         varchar(255),
   hook_url                      varchar(255),
   constraint pk_bot_hook primary key (id)
@@ -13,7 +14,6 @@ create table bot_hook (
 
 create table forum_comment (
   id                            bigint auto_increment not null,
-  parent_section_id             bigint,
   parent_post_id                bigint,
   user_id                       bigint,
   message_body                  varchar(255),
@@ -31,6 +31,7 @@ create table forum_post (
 create table forum_section (
   id                            bigint auto_increment not null,
   name                          varchar(255),
+  prevent_posts                 tinyint(1) default 0,
   parent_section_id             bigint,
   constraint pk_forum_section primary key (id)
 );
@@ -41,9 +42,6 @@ create table user (
   email                         varchar(255),
   constraint pk_user primary key (id)
 );
-
-alter table forum_comment add constraint fk_forum_comment_parent_section_id foreign key (parent_section_id) references forum_section (id) on delete restrict on update restrict;
-create index ix_forum_comment_parent_section_id on forum_comment (parent_section_id);
 
 alter table forum_comment add constraint fk_forum_comment_parent_post_id foreign key (parent_post_id) references forum_post (id) on delete restrict on update restrict;
 create index ix_forum_comment_parent_post_id on forum_comment (parent_post_id);
@@ -62,9 +60,6 @@ create index ix_forum_section_parent_section_id on forum_section (parent_section
 
 
 # --- !Downs
-
-alter table forum_comment drop foreign key fk_forum_comment_parent_section_id;
-drop index ix_forum_comment_parent_section_id on forum_comment;
 
 alter table forum_comment drop foreign key fk_forum_comment_parent_post_id;
 drop index ix_forum_comment_parent_post_id on forum_comment;
