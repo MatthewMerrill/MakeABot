@@ -1,9 +1,26 @@
 @()
 
+<script src="https://cdn.auth0.com/js/lock-9.1.min.js"></script>
+<script type="text/javascript">
+    var lock = new Auth0Lock('GQlQkZFp6dEI0LhOE6go9rLsaZFwFlyx', 'mattmerr47.auth0.com');
+
+
+    function signin() {
+        lock.show({
+            callbackURL: AUTH0_CALLBACK_URL
+            , responseType: 'code'
+            , authParams: {
+                scope: 'openid email'  // Learn about scopes: https://auth0.com/docs/scopes
+            }
+        });
+    }
+</script>
+
 <div class="headbar">
     <h1>MakeABot</h1>
     <nav>
         <a href="/forum">Forum</a>
         <a href="/playground">Playground</a>
+        <button onclick="window.signin();">Login</button>
     </nav>
 </div>

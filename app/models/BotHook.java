@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class BotHook extends Model {
 
-    public static Model.Finder<Long, BotHook> finder = new Model.Finder<>(BotHook.class);
+    public static Model.Finder<Long, BotHook> finder = new Model.Finder<>("default", BotHook.class);
 
     @Id
     public Long id;

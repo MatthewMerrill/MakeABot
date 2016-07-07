@@ -3,6 +3,8 @@
 # ~~~~
 
 GET     /                           controllers.HomeController.index
+GET     /callback                   controllers.Callback.callback(code: Option[String])
+GET     /user                       controllers.UserController.index
 
 GET     /playground                 controllers.HomeController.playground
 GET     /bot/:id                    controllers.HomeController.bot(id: Long)

@@ -1,10 +1,12 @@
 package controllers;
 
+import helpers.Auth0Config;
 import models.BotHook;
 import models.ForumPost;
 import models.ForumSection;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.auth0index;
 import views.html.forum;
 import views.html.index;
 import views.html.playground;
@@ -24,7 +26,7 @@ public class HomeController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result index() {
-        return ok(index.render("Your new application is ready."));
+        return ok(auth0index.render(Auth0Config.get()));
     }
 
     /*
